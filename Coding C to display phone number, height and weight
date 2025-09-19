@@ -1,0 +1,28 @@
+/*
+Name: Julius Haron 
+Raeg No:CT/100/G/26240/25
+Description:Hello c
+*/
+
+#include<stdio.h>
+
+int main(){
+float weight, height, phone_number;
+
+printf("Enter your height:\n");
+scanf("%f",& height);
+
+printf("Enter your phone number:\n");
+scanf("%f", & phone_number);
+
+printf("Enter your weight:\n");
+scanf("%f",& weight);
+
+// Display your input
+printf(" your height is:%.2f meter\n", height);
+printf("your phone number is:%f\n", phone_number);
+printf("your weight is:%.2f kg", weight);
+
+return 0;
+};
+
