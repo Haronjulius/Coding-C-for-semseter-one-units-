@@ -1,0 +1,34 @@
+/*
+Name: Julius Haron 
+Registration number: CT100/G/26240/25
+Description: sales text
+*/
+
+#include <stdio.h>
+
+int main() {
+    FILE *file;
+    float transaction, totalSales = 0.0;
+
+    
+    file = fopen("sales.txt", "r");
+
+    
+    if (file == NULL) {
+        printf("Error: Could not open sales.txt\n");
+        return 1;
+    }
+
+    
+    while (fscanf(file, "%f", &transaction) == 1) {
+        totalSales += transaction;
+    }
+
+    
+    printf("Total sales for the day: %.2f\n", totalSales);
+
+    
+    fclose(file);
+
+    return 0;
+}  
