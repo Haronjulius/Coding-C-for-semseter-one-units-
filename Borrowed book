@@ -1,0 +1,38 @@
+/* 
+Name: Julius Haron 
+Registration number:CT100/G/26240/25
+Description: borrowed book
+*/
+
+#include <stdio.h>
+
+
+int main(void) {
+    char title[256];
+    FILE *fp = fopen("borrowed_books.txt", "a");
+    if (!fp) {
+        perror("Error opening borrowed_books.txt");
+        return 1;
+    }
+
+    printf("Enter book title (max 255 chars). To finish, enter an empty line:\n");
+    while (1) {
+        if (!fgets(title, sizeof(title), stdin)) break;
+        
+        size_t len = strlen(title);
+        if (len > 0 && title[len-1] == '\n') title[len-1] = '\0';
+
+        if (title[0] == '\0') break; 
+
+        fprintf(fp, "%s\n", title);
+        printf("Saved: \"%s\"\n", title); 
+    }
+
+    if (fclose(fp) != 0) {
+        perror("Error closing borrowed_books.txt");
+        return 1;
+    }
+
+    puts("All done. File closed successfully.");
+    return 0;
+}
