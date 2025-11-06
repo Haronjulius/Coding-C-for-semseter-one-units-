@@ -1,0 +1,45 @@
+/* 
+Name: Julius Haron 
+Registration number:CT100/G/26240/25
+Description: Results 
+*/
+
+#include <stdio.h>
+
+
+typedef struct {
+    char name[100];      
+    char regno[30];      
+    int total_marks;     
+} Student;
+
+int main(void) {
+    FILE *fp = fopen("results.dat", "rb");
+    if (!fp) {
+        perror("Error opening results.dat");
+        return 1;
+    }
+
+    Student s;
+    printf("Student results:\n");
+    printf("\n");
+
+    while (fread(&s, sizeof(Student), 1, fp) == 1) {
+        
+        s.name[sizeof(s.name)-1] = '\0';
+        printf("Name: %s\tMarks: %d\n", s.name, s.total_marks);
+    }
+
+    if (ferror(fp)) {
+        perror("Error while reading results.dat");
+        fclose(fp);
+        return 1;
+    }
+
+    if (fclose(fp) != 0) {
+        perror("Error closing results.dat");
+        return 1;
+    }
+
+    return 0;
+}
